@@ -1,0 +1,32 @@
+{
+  "statut": "propose_par_ia",
+  "proposePar": "IA (Claude Code), 2026-11-15",
+  "validePar": null,
+  "valideLe": null,
+  "etape": "Complexité",
+  "objet": "Sans vérité terrain sur la complexité, on vérifie l'ordre entre deux éléments de tailles nettement différentes, la stabilité d'une estimation répétée, et l'accord avec les complexités du backlog du scénario.",
+  "provenance": "Les paires sont inventées par l'IA. Les complexités du backlog (donnees/seed/items.json) ont été écrites par l'IA pour le scénario et ne sont pas encore validées : elles servent de référence provisoire, et l'accord avec elles est une mesure, pas un critère de réussite.",
+  "repetitions": 3,
+  "paires": [
+    {
+      "id": "K1",
+      "petit": { "titre": "Renommer le bouton « Archiver » en « Clore »", "description": "Changer le libellé d'un bouton dans la vue projet." },
+      "grand": { "titre": "Mode hors ligne", "description": "Consulter et modifier ses tâches sans connexion, avec une synchronisation et une résolution des conflits au retour du réseau." }
+    },
+    {
+      "id": "K2",
+      "petit": { "titre": "Raccourci clavier pour créer une tâche", "description": "Ouvrir le formulaire de création de tâche avec la touche N." },
+      "grand": { "titre": "Tableau de bord portefeuille", "description": "Suivre l'avancement, les risques et les échéances de plusieurs dizaines de projets, avec des indicateurs consolidés et des filtres par équipe." }
+    },
+    {
+      "id": "K3",
+      "petit": { "titre": "Compteur de tâches en retard", "description": "Afficher le nombre de tâches en retard dans l'en-tête d'un projet." },
+      "grand": { "titre": "Import complet depuis Trello", "description": "Importer les tableaux, les cartes, les commentaires, les pièces jointes et les membres d'un compte Trello, avec la correspondance des statuts." }
+    },
+    {
+      "id": "K4",
+      "petit": { "titre": "Rappel par email la veille d'une échéance", "description": "Envoyer un email à la personne assignée la veille de l'échéance de sa tâche." },
+      "grand": { "titre": "SSO multi-fournisseurs", "description": "Connecter Jalonne aux fournisseurs d'identité des clients en SAML et OIDC (Okta, Entra ID, Google), avec le provisionnement automatique des comptes." }
+    }
+  ]
+}

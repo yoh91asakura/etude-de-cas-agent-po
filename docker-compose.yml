@@ -1,0 +1,122 @@
+# Démo « comme chez un client » : le socle (Postgres, passerelle LLM) et l'agent PO (API, worker, cockpit).
+# Statut : exécuté sous Docker sans clé Anthropic (LLM_FOURNISSEUR=faux) : préchargement sur Postgres, worker séparé,
+# NOTIFY jusqu'au flux SSE, cockpit relayé, clé de projet créée sur la passerelle. Pas encore exécuté avec la vraie clé.
+# Démarrage :
+#   1. cp .env.example .env, renseigner ANTHROPIC_API_KEY (et changer LITELLM_MASTER_KEY hors poste local) ;
+#   2. docker compose up -d postgres passerelle-llm ;
+#   3. node socle/litellm/creer-cle-projet.mjs : crée la clé du projet « agent PO » (modèles autorisés, budget) dans .env ;
+#   4. docker compose up --build.
+# Sans clé Anthropic : LLM_FOURNISSEUR=faux docker compose up --build (faux fournisseur, plomberie seule).
+# Cockpit : http://localhost:8080 · API : http://localhost:3000 · passerelle LLM : http://localhost:4000
+
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: socle
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-socle-local}
+      POSTGRES_DB: po_agent
+    volumes:
+      - donnees-postgres:/var/lib/postgresql/data
+      - ./socle/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U socle -d po_agent"]
+      interval: 5s
+      retries: 10
+
+  passerelle-llm:
+    # Épinglée sur la version testée (LiteLLM 1.109.1) : tag et empreinte, pour qu'une mise à jour soit un choix.
+    image: docker.litellm.ai/berriai/litellm:v1.109.1@sha256:11175975a3093e05e92faee2fe2fe3412a3ae2fcaa849eb0fe25d5f0d8bcb2e9
+    command: ["--config", "/app/config.yaml"]
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      LITELLM_MASTER_KEY: ${LITELLM_MASTER_KEY:-sk-socle-local}
+      LITELLM_SALT_KEY: ${LITELLM_SALT_KEY:-sk-sel-local}
+      DATABASE_URL: postgresql://socle:${POSTGRES_PASSWORD:-socle-local}@postgres:5432/litellm
+    volumes:
+      - ./socle/litellm/config.yaml:/app/config.yaml:ro
+    ports:
+      - "127.0.0.1:4000:4000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # Préchargement unique : charge l'instantané de démo s'il existe (aucun appel au modèle), sinon traite le jeu complet.
+  precharge:
+    build: .
+    command: ["npx", "tsx", "apps/api/src/precharger.ts", "--si-instantane"]
+    environment:
+      DATABASE_URL: postgresql://socle:${POSTGRES_PASSWORD:-socle-local}@postgres:5432/po_agent
+      LLM_BASE_URL: http://passerelle-llm:4000/anthropic
+      LLM_FOURNISSEUR: ${LLM_FOURNISSEUR:-}
+      LLM_MODELE_EXTRACTION: ${LLM_MODELE_EXTRACTION:-}
+      LLM_MODELE: ${LLM_MODELE:-}
+      LLM_ETAPES: ${LLM_ETAPES:-}
+      LLM_API_KEY: ${LITELLM_CLE_PROJET:-sk-socle-local}
+    restart: "no"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api:
+    build: .
+    command: ["npx", "tsx", "apps/api/src/serveur.ts"]
+    environment:
+      MODE: api
+      DATABASE_URL: postgresql://socle:${POSTGRES_PASSWORD:-socle-local}@postgres:5432/po_agent
+      LLM_BASE_URL: http://passerelle-llm:4000/anthropic
+      LLM_FOURNISSEUR: ${LLM_FOURNISSEUR:-}
+      # Vides, chaque étape prend son modèle par défaut (décision 013). La conversation tourne dans l'API.
+      LLM_MODELE: ${LLM_MODELE:-}
+      LLM_ETAPES: ${LLM_ETAPES:-}
+      # Clé virtuelle du projet « agent PO » (budget plafonné), ou la clé maître en local.
+      LLM_API_KEY: ${LITELLM_CLE_PROJET:-sk-socle-local}
+      # Canal Telegram optionnel : une seule instance de réception par bot, dans l'API.
+      TELEGRAM_PO_BOT_TOKEN: ${TELEGRAM_PO_BOT_TOKEN:-}
+      TELEGRAM_ALLOWED_USERS: ${TELEGRAM_ALLOWED_USERS:-}
+      TELEGRAM_SUPPORT_BOT_TOKEN: ${TELEGRAM_SUPPORT_BOT_TOKEN:-}
+      TELEGRAM_SUPPORT_COMPTE_ID: ${TELEGRAM_SUPPORT_COMPTE_ID:-C237}
+      # Export Jira optionnel, déclenché uniquement par une décision du PO : seule l'API en a besoin.
+      JIRA_SITE: ${JIRA_SITE:-}
+      JIRA_EMAIL: ${JIRA_EMAIL:-}
+      JIRA_API_TOKEN: ${JIRA_API_TOKEN:-}
+      JIRA_PROJET: ${JIRA_PROJET:-}
+      JIRA_TYPE_TICKET: ${JIRA_TYPE_TICKET:-}
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      precharge:
+        condition: service_completed_successfully
+
+  worker:
+    build: .
+    command: ["npx", "tsx", "apps/api/src/worker.ts"]
+    environment:
+      DATABASE_URL: postgresql://socle:${POSTGRES_PASSWORD:-socle-local}@postgres:5432/po_agent
+      LLM_BASE_URL: http://passerelle-llm:4000/anthropic
+      LLM_FOURNISSEUR: ${LLM_FOURNISSEUR:-}
+      LLM_MODELE_EXTRACTION: ${LLM_MODELE_EXTRACTION:-}
+      LLM_MODELE: ${LLM_MODELE:-}
+      LLM_ETAPES: ${LLM_ETAPES:-}
+      LLM_API_KEY: ${LITELLM_CLE_PROJET:-sk-socle-local}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      precharge:
+        condition: service_completed_successfully
+
+  # Cockpit du PO, servi par Vite en mode aperçu ; /api est relayé vers le service api.
+  web:
+    build: .
+    command: ["sh", "-c", "npm run build -w @po-agent/web && npx vite preview apps/web --host 0.0.0.0 --port 4173"]
+    environment:
+      API_URL: http://api:3000
+    ports:
+      - "127.0.0.1:8080:4173"
+    depends_on:
+      - api
+
+volumes:
+  donnees-postgres:

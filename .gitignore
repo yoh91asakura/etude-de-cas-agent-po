@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+coverage/
+donnees/etat-local/
+apps/web/dist/
+evals/resultats/*-faux.*
+
+# Sauvegardes locales de l’état de démo
+donnees/etat-local-*/
+
+# Copies de travail des sous-agents
+.claude/worktrees/

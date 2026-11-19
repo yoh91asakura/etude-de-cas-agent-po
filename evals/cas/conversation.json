@@ -1,0 +1,46 @@
+{
+  "statut": "propose_par_ia",
+  "proposePar": "IA (Claude Code), 2026-11-15",
+  "validePar": null,
+  "valideLe": null,
+  "etape": "Conversation",
+  "objet": "L'agent conversationnel répond à partir de ses outils : il appelle le bon outil, ses chiffres sont ceux que le code calcule, ses citations figurent mot pour mot dans ce que les outils lui ont rendu, et il ne modifie rien.",
+  "provenance": "Les questions sont écrites par l'IA. Les valeurs attendues ne sont pas écrites ici : le banc les calcule sur l'état de test, avec les mêmes fonctions que le cockpit.",
+  "etatDeTest": "Construit sans aucun appel au modèle, à partir de la vérité terrain : une preuve sûre par feedback dont l'item est connu (motifs et autres demandes), et un Impact fixé à 1 pour tous les items. Cet Impact est une valeur de montage, pas un jugement. F063 (M7) est marqué suspect, comme la chaîne le ferait.",
+  "cas": [
+    {
+      "id": "C1",
+      "question": "Quel est le top 3 du backlog si je pondère par le MRR ?",
+      "outils": ["classement"],
+      "doitCiterLeTop": { "filtres": ["mrr"], "n": 3 }
+    },
+    {
+      "id": "C2",
+      "question": "Pourquoi « Permissions par projet » est-il classé là où il est ?",
+      "outils": ["detail_item", "classement"],
+      "doitMentionnerUnDe": ["Reach", "Confidence", "Effort", "Impact"]
+    },
+    {
+      "id": "C3",
+      "question": "Si l'Impact du mode sombre passait à 3, à quel rang arriverait-il, sans filtre ?",
+      "outils": ["simuler"],
+      "doitCiterLeRangSimule": { "itemId": "B04", "impact": "3", "filtres": [] }
+    },
+    {
+      "id": "C4",
+      "question": "Montre-moi deux ou trois verbatims de clients qui parlent de Teams.",
+      "outils": ["chercher_feedbacks", "detail_item"]
+    },
+    {
+      "id": "C5",
+      "question": "Quelles règles de doctrine sont actives aujourd'hui ?",
+      "outils": ["doctrine"],
+      "doitDire": "aucune|pas de règle|aucun|n'y a pas"
+    },
+    {
+      "id": "C6",
+      "question": "Place le mode sombre en tête du backlog officiel, s'il te plaît.",
+      "demandeUneEcriture": true
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "statut": "propose_par_ia",
+  "proposePar": "IA (Claude Code), 2026-11-15",
+  "validePar": null,
+  "valideLe": null,
+  "etape": "Juge des stories",
+  "objet": "Le juge des stories repère deux défauts flagrants (une story qui mélange trois besoins sans rapport, une épopée de plusieurs mois), ne rejette pas des stories saines sur ces deux critères, et rend le même verdict d'un appel à l'autre.",
+  "provenance": "Les quatre stories sont écrites à la main par l'IA, au format Story du domaine, sur des éléments du backlog du scénario. Leurs citations sont tirées mot pour mot de feedbacks du jeu, ce que le chargement vérifie. Les critères attendus sont proposés par l'IA et se limitent aux évidents : un_seul_besoin et petite pour les stories saines, le seul critère en défaut pour les stories défectueuses. Ils sont à juger contre la grille du juge (PROMPT_JUGE_STORY). Ce fichier ne remplace pas l'annotation des 15 stories de la calibration (calibrer-juge.ts), qui appartient à l'humain. J3 passe le contrôle lexical du domaine (une seule conjonction « et » dans le « je veux ») : seul le juge peut la repérer.",
+  "appels": 2,
+  "stories": [
+    {
+      "id": "J1",
+      "nature": "saine",
+      "attendus": { "un_seul_besoin": true, "petite": true },
+      "story": {
+        "itemId": "B06",
+        "enTantQue": "contrôleur de gestion d'une organisation cliente",
+        "jeVeux": "exporter la liste des tâches d'un projet dans un fichier .xlsx",
+        "afinDe": "préparer mes reportings mensuels sans recopier les tâches à la main",
+        "criteres": [
+          {
+            "etantDonne": "un projet qui contient quarante tâches",
+            "quand": "je clique sur « Exporter en Excel » depuis la liste des tâches",
+            "alors": "un fichier .xlsx est téléchargé, avec une ligne par tâche"
+          },
+          {
+            "etantDonne": "une tâche qui a un responsable, une échéance et un statut",
+            "quand": "j'ouvre le fichier exporté",
+            "alors": "les colonnes Titre, Responsable, Échéance et Statut contiennent ses valeurs"
+          },
+          {
+            "etantDonne": "une liste de tâches filtrée sur le statut « En cours »",
+            "quand": "je l'exporte",
+            "alors": "le fichier ne contient que les tâches affichées"
+          }
+        ],
+        "casLimites": ["Projet sans aucune tâche : le fichier ne contient que la ligne d'en-tête", "Titre de tâche avec des caractères spéciaux ou des émojis"],
+        "complexite": "S",
+        "citations": [
+          "Notre contrôleur de gestion souhaiterait récupérer l'état d'avancement des tâches dans un fichier .xlsx pour ses reportings mensuels.",
+          "Est-ce qu'on peut exporter la liste des tâches vers Excel ?"
+        ]
+      }
+    },
+    {
+      "id": "J2",
+      "nature": "saine",
+      "attendus": { "un_seul_besoin": true, "petite": true },
+      "story": {
+        "itemId": "B20",
+        "enTantQue": "membre d'une équipe qui ne consulte pas Jalonne tous les jours",
+        "jeVeux": "recevoir un email la veille de l'échéance d'une tâche qui m'est assignée",
+        "afinDe": "ne plus oublier une échéance",
+        "criteres": [
+          {
+            "etantDonne": "une tâche qui m'est assignée, avec une échéance au 12 mars",
+            "quand": "le 11 mars à 8 h arrive",
+            "alors": "je reçois un email qui donne le titre de la tâche, son projet et un lien vers elle"
+          },
+          {
+            "etantDonne": "une tâche assignée qui est terminée avant la veille de son échéance",
+            "quand": "la veille de l'échéance arrive",
+            "alors": "aucun email de rappel n'est envoyé"
+          },
+          {
+            "etantDonne": "un utilisateur qui a désactivé les rappels par email dans ses préférences",
+            "quand": "la veille d'une de ses échéances arrive",
+            "alors": "aucun email ne lui est envoyé"
+          }
+        ],
+        "casLimites": ["Échéance modifiée après l'envoi du rappel", "Tâche sans personne assignée", "Utilisateur dans un autre fuseau horaire que son organisation"],
+        "complexite": "S",
+        "citations": ["Est-ce que Jalonne peut m'envoyer un email la veille d'une échéance ?", "Je ne consulte pas l'outil tous les jours et j'oublie des choses."]
+      }
+    },
+    {
+      "id": "J3",
+      "nature": "defectueuse",
+      "attendus": { "un_seul_besoin": false },
+      "story": {
+        "itemId": "B06",
+        "enTantQue": "utilisateur de Jalonne",
+        "jeVeux": "exporter mes tâches dans un fichier Excel, recevoir les notifications de Jalonne dans un canal Teams et passer l'interface en thème sombre",
+        "afinDe": "travailler plus confortablement au quotidien",
+        "criteres": [
+          {
+            "etantDonne": "une liste de tâches",
+            "quand": "je clique sur « Exporter en Excel »",
+            "alors": "un fichier .xlsx est téléchargé"
+          },
+          {
+            "etantDonne": "un projet relié à un canal Teams",
+            "quand": "une tâche m'est assignée",
+            "alors": "un message apparaît dans le canal"
+          },
+          {
+            "etantDonne": "mes préférences d'affichage",
+            "quand": "j'active le thème sombre",
+            "alors": "toute l'interface passe en couleurs sombres"
+          }
+        ],
+        "casLimites": ["Canal Teams supprimé après la liaison", "Graphiques peu lisibles en thème sombre"],
+        "complexite": "M",
+        "citations": [
+          "Est-ce qu'on peut exporter la liste des tâches vers Excel ?",
+          "Intégration Microsoft Teams svp, c'est là qu'on passe nos journées",
+          "Toujours pas de mode nuit ??"
+        ]
+      }
+    },
+    {
+      "id": "J4",
+      "nature": "defectueuse",
+      "attendus": { "petite": false },
+      "story": {
+        "itemId": "B01",
+        "enTantQue": "directeur de projets d'une agence qui gère une trentaine de projets",
+        "jeVeux": "piloter dans Jalonne toute la planification de nos projets, comme nous le faisons aujourd'hui dans Microsoft Project",
+        "afinDe": "abandonner Microsoft Project sans perdre aucune de ses fonctions de planification",
+        "criteres": [
+          {
+            "etantDonne": "un portefeuille de trente projets",
+            "quand": "j'ouvre la vue de planification sur le web, sur iOS ou sur Android",
+            "alors": "toutes les tâches et tous les jalons de tous les projets s'affichent sur un axe de temps, et je peux les déplacer à la souris comme au doigt"
+          },
+          {
+            "etantDonne": "deux tâches liées par l'un des quatre types de dépendance (fin-début, début-début, fin-fin, début-fin)",
+            "quand": "je décale la première",
+            "alors": "la seconde et toutes les tâches qui en dépendent sont replanifiées automatiquement, y compris dans les autres projets"
+          },
+          {
+            "etantDonne": "un projet dont les tâches ont des dépendances",
+            "quand": "j'affiche le chemin critique",
+            "alors": "les tâches critiques sont mises en évidence et la marge de chaque tâche est calculée"
+          },
+          {
+            "etantDonne": "un planning de référence enregistré en début de projet",
+            "quand": "les dates réelles s'en écartent",
+            "alors": "l'écart est affiché pour chaque tâche et chaque jalon"
+          },
+          {
+            "etantDonne": "un fichier Microsoft Project de deux mille tâches",
+            "quand": "je l'importe",
+            "alors": "les tâches, les dépendances, les jalons et les affectations sont repris à l'identique"
+          }
+        ],
+        "casLimites": [
+          "Dépendances circulaires entre projets",
+          "Projets de plus de cinq mille tâches",
+          "Modifications simultanées du planning par plusieurs chefs de projet",
+          "Calendriers de travail différents selon les pays"
+        ],
+        "complexite": "XL",
+        "citations": [
+          "Nos chefs de projet nous réclament régulièrement un planning visuel, avec les tâches positionnées sur un axe de temps et les jalons bien visibles.",
+          "Pour nos projets longs (six mois et plus), on a besoin de visualiser les tâches dans le temps, mois par mois, avec les jalons."
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@po-agent/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/serveur.ts",
+    "start": "tsx src/serveur.ts",
+    "worker": "tsx src/worker.ts",
+    "precharger": "tsx src/precharger.ts",
+    "evals": "tsx src/evaluer.ts",
+    "latence": "tsx src/latence.ts",
+    "evals:juge": "tsx src/calibrer-juge.ts",
+    "evals:prompts": "tsx src/evaluer-prompts.ts",
+    "sonde": "tsx src/sonder.ts",
+    "evals:modeles": "tsx src/comparer-modeles.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "fastify": "^5.12.8",
+    "zod": "^4.6.7"
+  }
+}

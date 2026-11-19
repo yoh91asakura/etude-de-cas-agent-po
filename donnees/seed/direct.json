@@ -1,0 +1,51 @@
+[
+  {
+    "id": "D01",
+    "compteId": "C237",
+    "canal": "direct",
+    "recuLe": "2026-11-09T09:05:12Z",
+    "texte": "Bonjour,\n\nJe vous écris en tant que DSI du Groupe Hautvallon. Notre contrat arrive à échéance le mois prochain et notre direction a été très claire : nous ne renouvellerons pas sans SSO. Nous sommes plus de 80 collaborateurs sur Jalonne, et notre politique de sécurité impose désormais une authentification centralisée en SAML, avec Okta comme fournisseur d'identité.\n\nSi vous ne pouvez pas vous engager sur une date avant notre renouvellement, nous partirons chez un concurrent qui le propose déjà. J'attends une réponse cette semaine.\n\nCordialement,\nLaurent Desforges\nDirecteur des systèmes d'information, Groupe Hautvallon"
+  },
+  {
+    "id": "D02",
+    "compteId": "C058",
+    "canal": "direct",
+    "recuLe": "2026-11-09T09:14:37Z",
+    "texte": "Bonjour,\n\nEst-ce que la connexion via Okta est possible sur Jalonne ? Nous gérons les accès de tous nos collaborateurs depuis Okta, et devoir créer un mot de passe spécifique pour chaque outil freine beaucoup l'adoption.\n\nMerci,\nAnne-Sophie Rambert\nDumarais Logistique"
+  },
+  {
+    "id": "D03",
+    "compteId": "C134",
+    "canal": "direct",
+    "recuLe": "2026-11-09T09:19:48Z",
+    "texte": "Je reviens à la charge : mode sombre, c'est pour quand ? 🌚"
+  },
+  {
+    "id": "D04",
+    "compteId": "C297",
+    "canal": "direct",
+    "recuLe": "2026-11-09T09:24:05Z",
+    "texte": "Bonjour, on vient de passer sur Jalonne avec mon équipe. Il nous manque une ligne de temps pour voir quand chaque tâche commence et se termine. C'est prévu ?"
+  },
+  {
+    "id": "D05",
+    "compteId": "C100",
+    "canal": "direct",
+    "recuLe": "2026-11-09T09:29:41Z",
+    "texte": "Bonjour, il nous faudrait un export Excel des tâches avec les responsables et les échéances, pour nos réunions du lundi. C'est faisable ?"
+  },
+  {
+    "id": "D06",
+    "compteId": "C227",
+    "canal": "direct",
+    "recuLe": "2026-11-09T09:33:26Z",
+    "texte": "Je voulais juste dire que la nouvelle page d'accueil des projets est beaucoup plus claire. Merci à toute l'équipe !"
+  },
+  {
+    "id": "D07",
+    "compteId": "C135",
+    "canal": "direct",
+    "recuLe": "2026-11-09T09:38:53Z",
+    "texte": "Bonjour, nous passons sur Microsoft Teams la semaine prochaine. Une intégration est-elle prévue pour recevoir les notifications de Jalonne dans nos canaux ?"
+  }
+]

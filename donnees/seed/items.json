@@ -1,0 +1,182 @@
+[
+  {
+    "id": "B01",
+    "titre": "Vue chronologique (Gantt)",
+    "description": "Afficher les tâches d'un projet sur un axe temporel, avec leurs dates de début et de fin et les jalons.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "L",
+    "alignementObjectif": false
+  },
+  {
+    "id": "B02",
+    "titre": "Permissions par projet",
+    "description": "Définir des droits d'accès et des rôles différents pour chaque projet, y compris pour les invités externes.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "L",
+    "alignementObjectif": true
+  },
+  {
+    "id": "B03",
+    "titre": "SSO (SAML, Okta, Entra ID)",
+    "description": "Permettre aux organisations de connecter Jalonne à leur fournisseur d'identité pour une authentification centralisée.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "M",
+    "alignementObjectif": true
+  },
+  {
+    "id": "B04",
+    "titre": "Mode sombre",
+    "description": "Proposer un thème d'interface sombre activable dans les préférences de chaque utilisateur.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "S",
+    "alignementObjectif": false
+  },
+  {
+    "id": "B05",
+    "titre": "Intégration Microsoft Teams",
+    "description": "Publier les notifications de Jalonne dans les canaux Teams et permettre de créer des tâches depuis Teams.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "M",
+    "alignementObjectif": true
+  },
+  {
+    "id": "B06",
+    "titre": "Export Excel",
+    "description": "Exporter les tâches d'un projet et leurs attributs dans un fichier .xlsx.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "S",
+    "alignementObjectif": false
+  },
+  {
+    "id": "B07",
+    "titre": "Champs personnalisés",
+    "description": "Ajouter sur les tâches des champs définis par l'organisation (texte, nombre, liste, date).",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "M",
+    "alignementObjectif": true
+  },
+  {
+    "id": "B08",
+    "titre": "Tâches récurrentes",
+    "description": "Recréer automatiquement une tâche selon une fréquence quotidienne, hebdomadaire ou mensuelle.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "M",
+    "alignementObjectif": false
+  },
+  {
+    "id": "B09",
+    "titre": "Modèles de projet",
+    "description": "Enregistrer un projet type et en créer de nouveaux à partir de ce modèle, avec ses tâches et ses jalons.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "S",
+    "alignementObjectif": false
+  },
+  {
+    "id": "B10",
+    "titre": "Notifications mobiles",
+    "description": "Envoyer des notifications push sur l'application mobile pour les assignations, les mentions et les échéances.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "M",
+    "alignementObjectif": false
+  },
+  {
+    "id": "B11",
+    "titre": "Journal d'audit",
+    "description": "Tracer les actions des utilisateurs (créations, modifications, suppressions) dans un journal consultable par les administrateurs.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "M",
+    "alignementObjectif": true
+  },
+  {
+    "id": "B12",
+    "titre": "Webhooks et API publique",
+    "description": "Exposer une API publique documentée et des webhooks pour intégrer Jalonne aux outils des clients.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "M",
+    "alignementObjectif": true
+  },
+  {
+    "id": "B13",
+    "titre": "Import depuis Trello",
+    "description": "Importer les tableaux, les cartes, les commentaires et les pièces jointes d'un compte Trello.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "M",
+    "alignementObjectif": false
+  },
+  {
+    "id": "B14",
+    "titre": "Charge de travail par membre",
+    "description": "Visualiser la charge planifiée de chaque membre de l'équipe sur les semaines à venir.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "L",
+    "alignementObjectif": true
+  },
+  {
+    "id": "B15",
+    "titre": "Tableau de bord portefeuille",
+    "description": "Suivre l'avancement, les risques et les échéances de plusieurs projets dans une vue consolidée.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "XL",
+    "alignementObjectif": true
+  },
+  {
+    "id": "B16",
+    "titre": "Suivi du temps",
+    "description": "Saisir ou chronométrer le temps passé sur les tâches et en tirer des récapitulatifs par projet.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "L",
+    "alignementObjectif": false
+  },
+  {
+    "id": "B17",
+    "titre": "Mode hors ligne",
+    "description": "Consulter et modifier ses tâches sans connexion, avec une synchronisation au retour du réseau.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "XL",
+    "alignementObjectif": false
+  },
+  {
+    "id": "B18",
+    "titre": "Sous-tâches imbriquées",
+    "description": "Découper une tâche en sous-tâches sur plusieurs niveaux de profondeur.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "M",
+    "alignementObjectif": false
+  },
+  {
+    "id": "B19",
+    "titre": "Recherche plein texte",
+    "description": "Rechercher un mot dans les titres, les descriptions, les commentaires et les pièces jointes.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "M",
+    "alignementObjectif": false
+  },
+  {
+    "id": "B20",
+    "titre": "Rappels par email",
+    "description": "Envoyer un email de rappel avant l'échéance d'une tâche assignée.",
+    "type": "fonctionnalite",
+    "statut": "backlog",
+    "complexite": "S",
+    "alignementObjectif": false
+  }
+]

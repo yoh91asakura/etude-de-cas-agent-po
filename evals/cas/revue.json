@@ -1,0 +1,103 @@
+{
+  "statut": "propose_par_ia",
+  "proposePar": "IA (Claude Code), 2026-11-15",
+  "validePar": null,
+  "valideLe": null,
+  "etape": "Revue de fond",
+  "objet": "La revue de fond repère les doublons créés par l'agent, ne propose aucune fusion entre des besoins distincts, et ne propose que des règles qui s'appuient sur des réponses réelles du PO.",
+  "provenance": "L'état soumis à la revue reprend le backlog du scénario (B01 à B20) avec les verbatims de la vérité terrain. S'y ajoutent des items « créés par l'agent » dont les verbatims viennent de feedbacks de la vérité terrain : leur vrai item est donc connu. Le titre de ces items et les réponses simulées du PO sont écrits par l'IA, conformes à la vérité terrain. Les extraits sont vérifiés mot pour mot au chargement.",
+  "itemsCreesParAgent": [
+    {
+      "id": "N01",
+      "titre": "Export des tâches au format xlsx",
+      "verbatims": [
+        {
+          "feedbackId": "F046",
+          "extrait": "Est-ce qu'on peut exporter la liste des tâches vers Excel ?"
+        },
+        {
+          "feedbackId": "F077",
+          "extrait": "export xls ou csv svp, on doit tout recopier à la main dans nos reportings"
+        }
+      ]
+    },
+    {
+      "id": "N02",
+      "titre": "Mode nuit",
+      "verbatims": [
+        {
+          "feedbackId": "F005",
+          "extrait": "Toujours pas de mode nuit ??"
+        },
+        {
+          "feedbackId": "F007",
+          "extrait": "Interface trop lumineuse le soir."
+        }
+      ]
+    },
+    {
+      "id": "N03",
+      "titre": "Connexion unique avec l'annuaire d'entreprise",
+      "verbatims": [
+        {
+          "feedbackId": "F071",
+          "extrait": "Est-il possible de mettre en place une connexion unique avec notre annuaire d'entreprise ?"
+        }
+      ]
+    },
+    {
+      "id": "N04",
+      "titre": "Visibilité restreinte pour les sous-traitants",
+      "verbatims": [
+        {
+          "feedbackId": "F075",
+          "extrait": "Nos sous-traitants ne doivent voir QUE leur chantier."
+        },
+        {
+          "feedbackId": "F056",
+          "extrait": "gérez-vous des droits par projet ?"
+        }
+      ]
+    },
+    {
+      "id": "N05",
+      "titre": "Régression : dépendances absentes de l'export PDF",
+      "verbatims": [
+        {
+          "feedbackId": "F065",
+          "extrait": "Ce serait top si l'export PDF pouvait inclure de nouveau les dépendances."
+        },
+        {
+          "feedbackId": "F067",
+          "extrait": "Serait-il possible d'y faire figurer les liens de dépendance entre les tâches ?"
+        }
+      ]
+    }
+  ],
+  "reponsesPO": [
+    {
+      "id": "RS1",
+      "enonce": "À quel élément du backlog rattacher cette demande ?",
+      "choix": "B03",
+      "feedbackId": "F042",
+      "resume": "Prise en charge du SSO pour l'audit de sécurité",
+      "citation": "Notre RSSI souhaite savoir si Jalonne prend en charge le SSO."
+    },
+    {
+      "id": "RS2",
+      "enonce": "Cette demande relève-t-elle de « SSO (SAML, Okta, Entra ID) » ou de « Permissions par projet » ?",
+      "choix": "B03",
+      "feedbackId": "D01",
+      "resume": "Authentification centralisée en SAML avec Okta",
+      "citation": "notre politique de sécurité impose désormais une authentification centralisée en SAML, avec Okta comme fournisseur d'identité."
+    },
+    {
+      "id": "RS3",
+      "enonce": "Cette demande relève-t-elle de « Permissions par projet » ou de « SSO (SAML, Okta, Entra ID) » ?",
+      "choix": "B02",
+      "feedbackId": "F045",
+      "resume": "Rôles différents selon les projets",
+      "citation": "Nous aurions besoin de rôles par projet"
+    }
+  ]
+}

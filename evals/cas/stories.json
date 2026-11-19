@@ -1,0 +1,69 @@
+{
+  "statut": "propose_par_ia",
+  "proposePar": "IA (Claude Code), 2026-11-15",
+  "validePar": null,
+  "valideLe": null,
+  "etape": "Rédaction de story",
+  "objet": "Sans story de référence, on vérifie par le code la forme de la story rédigée pour un vrai élément du backlog : les contrôles du domaine (controlerStory), des citations recopiées mot pour mot parmi les verbatims fournis, 2 à 5 critères d'acceptation et une complexité valide. La longueur (critères et cas limites) est mesurée, sans critère de réussite.",
+  "provenance": "Les trois éléments viennent du backlog du scénario (donnees/seed/items.json). Les extraits sont tirés mot pour mot de feedbacks que la vérité terrain rattache à ces éléments (motif M1 pour B02, motif M5 et D07 pour B05, « autres » pour B06). L'IA n'a écrit que le choix des extraits. Au chargement, chaque extrait est vérifié mot pour mot dans son feedback, et le rattachement de ce feedback contre la vérité terrain.",
+  "cas": [
+    {
+      "id": "S1",
+      "itemId": "B02",
+      "verbatims": [
+        {
+          "feedbackId": "F019",
+          "extrait": "Il nous faudrait un accès en lecture seule pour les prestataires, limité aux projets sur lesquels ils interviennent."
+        },
+        {
+          "feedbackId": "F045",
+          "extrait": "Nous aurions besoin de rôles par projet : qu'une personne puisse être contributrice sur un projet, simple observatrice sur un autre et n'avoir aucun accès à un troisième."
+        },
+        {
+          "feedbackId": "F084",
+          "extrait": "Il faut pouvoir cacher un projet à un client invité, aujourd'hui c'est tout ou rien."
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "itemId": "B05",
+      "verbatims": [
+        {
+          "feedbackId": "F012",
+          "extrait": "Serait-il possible de recevoir les notifications de Jalonne (tâche assignée, échéance proche) directement dans un canal Teams ?"
+        },
+        {
+          "feedbackId": "F022",
+          "extrait": "Nos équipes ne lisent quasiment plus leurs mails, tout passe par Teams."
+        },
+        {
+          "feedbackId": "F085",
+          "extrait": "Depuis notre passage sous Teams, nos managers demandent si les rappels d'échéance pourraient être postés dans le canal de chaque équipe."
+        },
+        {
+          "feedbackId": "D07",
+          "extrait": "Une intégration est-elle prévue pour recevoir les notifications de Jalonne dans nos canaux ?"
+        }
+      ]
+    },
+    {
+      "id": "S3",
+      "itemId": "B06",
+      "verbatims": [
+        {
+          "feedbackId": "F016",
+          "extrait": "Notre contrôleur de gestion souhaiterait récupérer l'état d'avancement des tâches dans un fichier .xlsx pour ses reportings mensuels."
+        },
+        {
+          "feedbackId": "F077",
+          "extrait": "export xls ou csv svp, on doit tout recopier à la main dans nos reportings"
+        },
+        {
+          "feedbackId": "D05",
+          "extrait": "il nous faudrait un export Excel des tâches avec les responsables et les échéances, pour nos réunions du lundi."
+        }
+      ]
+    }
+  ]
+}

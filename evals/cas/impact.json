@@ -1,0 +1,40 @@
+{
+  "statut": "propose_par_ia",
+  "proposePar": "IA (Claude Code), 2026-11-15",
+  "validePar": null,
+  "valideLe": null,
+  "etape": "Impact",
+  "objet": "Sans vérité terrain sur l'Impact, on vérifie trois choses : l'ordre entre deux demandes d'enjeux nettement différents au regard des ancres de la grille (ANCRES_IMPACT), la stabilité quand on paraphrase les verbatims, et la dispersion des tirages.",
+  "provenance": "Les paires sont inventées par l'IA à partir des ancres de la grille, qui appartient à l'humain : chaque paire doit être relue. Les cas de paraphrase reprennent des items et des feedbacks réels, et les paraphrases de evals/cas/paraphrases.json.",
+  "tolerance": {
+    "paraphraseCransMax": 1,
+    "note": "Écart maximal toléré, en crans, entre la médiane sur les verbatims d'origine et celle sur leurs paraphrases. Seuil proposé, à valider."
+  },
+  "paires": [
+    {
+      "id": "I1",
+      "fort": { "titre": "Connexion SAML obligatoire", "citations": ["Sans SSO en SAML, notre direction ne renouvellera pas le contrat le mois prochain."] },
+      "faible": { "titre": "Icône de l'application en couleur", "citations": ["L'icône grise est un peu terne, une version en couleur serait sympa."] }
+    },
+    {
+      "id": "I2",
+      "fort": { "titre": "Dépendances perdues dans l'export PDF", "citations": ["Depuis la dernière mise à jour, l'export PDF ne contient plus les dépendances, alors que nos comités de pilotage s'appuient dessus chaque semaine."] },
+      "faible": { "titre": "Tri alphabétique des étiquettes", "citations": ["Ce serait pratique de pouvoir trier les étiquettes par ordre alphabétique."] }
+    },
+    {
+      "id": "I3",
+      "fort": { "titre": "Projets cachés aux sous-traitants", "citations": ["Nous ne pouvons pas ouvrir l'outil à nos quinze sous-traitants tant qu'ils voient tous nos projets."] },
+      "faible": { "titre": "Raccourcis clavier", "citations": ["Je perds un peu de temps à cliquer partout, des raccourcis clavier seraient appréciés."] }
+    },
+    {
+      "id": "I4",
+      "fort": { "titre": "Recherche dans les commentaires", "citations": ["Chaque jour, je passe plusieurs minutes à retrouver une décision noyée dans les commentaires, faute de recherche."] },
+      "faible": { "titre": "Emojis dans les titres de tâches", "citations": ["Pouvoir mettre des emojis dans les titres de tâches, ce serait amusant."] }
+    }
+  ],
+  "paraphrases": [
+    { "id": "IP1", "itemId": "B02", "cas": ["P1"] },
+    { "id": "IP2", "itemId": "B04", "cas": ["P2"] },
+    { "id": "IP3", "itemId": "B05", "cas": ["P5"] }
+  ]
+}

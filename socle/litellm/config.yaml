@@ -1,0 +1,23 @@
+# Passerelle LLM du socle (LiteLLM). L'agent PO l'appelle par la route de relais natif /anthropic :
+# la requête au format Anthropic est transmise sans traduction (sorties structurées, effort).
+# Vérifié sans clé Anthropic (LiteLLM 1.109.1) : la clé de projet est acceptée en x-api-key (l'en-tête du SDK),
+# un modèle hors de sa liste est refusé (403), une clé inconnue aussi (401), et la clé de projet n'est jamais
+# transmise à Anthropic. Reste à vérifier avec la clé : passage de output_config, décompte sur le budget du projet.
+model_list:
+  - model_name: claude-opus-5-5
+    litellm_params:
+      model: anthropic/claude-opus-5-5
+      api_key: os.environ/ANTHROPIC_API_KEY
+  - model_name: claude-sonnet-5-5
+    litellm_params:
+      model: anthropic/claude-sonnet-5-5
+      api_key: os.environ/ANTHROPIC_API_KEY
+  - model_name: claude-haiku-5-5
+    litellm_params:
+      model: anthropic/claude-haiku-5-5
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+  # Les clés virtuelles et les budgets par projet exigent une base de données.
+  database_url: os.environ/DATABASE_URL

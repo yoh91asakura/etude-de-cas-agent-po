@@ -1,0 +1,63 @@
+{
+  "statut": "propose_par_ia",
+  "proposePar": "IA (Claude Code), 2026-11-15",
+  "validePar": null,
+  "valideLe": null,
+  "etape": "Formulation de règle",
+  "objet": "Quand le PO tranche un rattachement, la règle formulée par l'agent rattache le cas qui l'a fait naître, et ne capte pas les demandes qui relèvent d'un autre item.",
+  "provenance": "Chaque cas simule une réponse du PO conforme à la vérité terrain : le feedback et l'item choisi viennent du motif ou des autres demandes. L'IA a écrit le résumé de la demande (ce que l'extraction aurait produit) et choisi les items écartés, qui sont des confusions plausibles. La citation est vérifiée mot pour mot au chargement.",
+  "tolerance": {
+    "capturesHorsItemMax": 0,
+    "note": "Les captures sont comptées sur le texte entier des feedbacks de la vérité terrain, salutations et signatures comprises : c'est une borne haute. En production, une règle ne s'applique qu'au résumé et à la citation d'une demande."
+  },
+  "cas": [
+    {
+      "id": "R1",
+      "feedbackId": "F045",
+      "resume": "Rôles différents selon les projets : contributeur, observateur ou aucun accès",
+      "citation": "Nous aurions besoin de rôles par projet",
+      "itemChoisi": "B02",
+      "itemsEcartes": ["B03", "B11"]
+    },
+    {
+      "id": "R2",
+      "feedbackId": "F019",
+      "resume": "Accès en lecture seule pour les prestataires, limité à leurs projets",
+      "citation": "Il nous faudrait un accès en lecture seule pour les prestataires, limité aux projets sur lesquels ils interviennent.",
+      "itemChoisi": "B02",
+      "itemsEcartes": ["B03"]
+    },
+    {
+      "id": "R3",
+      "feedbackId": "F071",
+      "resume": "Connexion unique avec l'annuaire d'entreprise",
+      "citation": "Est-il possible de mettre en place une connexion unique avec notre annuaire d'entreprise ?",
+      "itemChoisi": "B03",
+      "itemsEcartes": ["B02", "B11"]
+    },
+    {
+      "id": "R4",
+      "feedbackId": "F012",
+      "resume": "Recevoir les notifications de Jalonne dans un canal Teams",
+      "citation": "Serait-il possible de recevoir les notifications de Jalonne (tâche assignée, échéance proche) directement dans un canal Teams ?",
+      "itemChoisi": "B05",
+      "itemsEcartes": ["B10", "B20"]
+    },
+    {
+      "id": "R5",
+      "feedbackId": "F017",
+      "resume": "Vue chronologique pour présenter l'avancement au client",
+      "citation": "Besoin d'une timeline pour présenter l'avancement au client.",
+      "itemChoisi": "B01",
+      "itemsEcartes": ["B14", "B15"]
+    },
+    {
+      "id": "R6",
+      "feedbackId": "F016",
+      "resume": "Exporter l'avancement des tâches dans un fichier Excel",
+      "citation": "Notre contrôleur de gestion souhaiterait récupérer l'état d'avancement des tâches dans un fichier .xlsx pour ses reportings mensuels.",
+      "itemChoisi": "B06",
+      "itemsEcartes": ["B13", "B15"]
+    }
+  ]
+}

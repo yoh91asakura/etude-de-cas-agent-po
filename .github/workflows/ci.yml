@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Typage
+        run: npm run typecheck
+      - name: Typage et compilation du cockpit
+        run: npx tsc -p apps/web/tsconfig.json --noEmit && npm run build -w @po-agent/web
+      - name: Tests unitaires, métamorphiques et de bout en bout (sans appel au modèle)
+        run: npm test
+      - name: Banc d'évaluation, plomberie et invariants de sécurité (faux fournisseur, sans appel au modèle)
+        run: npm run evals -w @po-agent/api
+        env:
+          LLM_FOURNISSEUR: faux
+      # Plomberie seule : avec le faux fournisseur, seules une panne du banc ou un fichier de cas incohérent font échouer.
+      - name: Banc des prompts, plomberie et cohérence des cas (faux fournisseur, sans appel au modèle)
+        run: npm run evals:prompts -w @po-agent/api
+        env:
+          LLM_FOURNISSEUR: faux
